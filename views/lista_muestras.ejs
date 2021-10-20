@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<%- include('includes/head.ejs') %>
+
+<main class="container-fluid">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <% if ( isLoggedIn ) { %>
+                    <a href="/muestras/add">Agregar muestras</a>
+                    <br>
+                <% } %>
+                <a href="/">Volver al menú</a>
+                <br>
+                <h1><%= titulo %></h1>
+                <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" >
+                <input id="buscar" class="form-control" type="text" placeholder="Medicamento que desea buscar" aria-label="default input example">
+                <br>
+            </div>
+            <div class="col-1"></div>
+
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div id="contenedor_medicinas">
+                    <% if (lista_muestras.length > 0) { %>
+                        <% for (let muestro of lista_muestras) { %>
+                        <div class="col s12 m6 l4">
+                            <li><strong>Nombre: </strong><%= muestro.nombre %>, <strong>Descripción: </strong><%= muestro.funcion %></li>
+                        </div>  
+                        <% } %>
+                    <% } else { %>
+                        <h3>No hay muestras disponibles en el menú</h3>
+                    <% } %>
+                </div> 
+            </div>
+            <div class="col-1"></div>
+              
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</main>
+<%- include('includes/footer.ejs') %>
+
+</html>
+
+<script>
+    document.getElementById("buscar").oninput = () => {
+        //console.log(document.getElementById("buscar").value); //verificar lo que manda
+        document.getElementById("buscar").value;
+        //Token de protección CSRF
+        const csrf = document.getElementById('_csrf').value;
+        //console.log(csrf); //ver si tengo el csrf
+
+        //función que manda la petición asíncrona
+        fetch('/muestras/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'csrf-token': csrf
+            },
+            body: JSON.stringify({
+                //objeto de js
+                query: document.getElementById("buscar").value,
+            })
+        }).then(result => {
+            return result.json(); //Regresa otra promesa
+        }).then(data => {
+            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+            data = data.rows;
+            console.log(data);
+            let contenido = "";
+
+            if (data.length > 0) {
+                for (let muestro of data) {
+                    contenido += '<div class="col s12 m6 l4">'
+                    contenido += '<li><strong>Nombre: </strong>'+ muestro.nombre + ', <strong>Descripción: </strong>'+ muestro.funcion +'</li>'
+                    contenido += '</div>'  
+                }
+            } else {
+                contenido += '<h3>No hay muestras que coincidan con la búsqueda</h3>'
+            }
+
+            document.getElementById("contenedor_medicinas").innerHTML = contenido;
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+</script>

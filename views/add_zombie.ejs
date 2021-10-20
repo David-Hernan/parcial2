@@ -1,0 +1,29 @@
+<%- include('includes/head.ejs') %>
+
+<main class="container">
+        <div class="row">
+            <a href="/">Volver al menú</a>
+            <a href="/zombies/list">Lista de zombies</a>
+            <h1><%= titulo %></h1>
+
+            <div class="col s12 m6 l4">
+                
+                <form action="/zombies/add_new_z" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                    <label for="nombre">Nombre del zombie: </label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Pedro Páramo Pérez" required>
+                    <br/> 
+                    <br/>
+                    <label for="estaz">Estado actual: </label>
+                    <input type="text" id="estaz" name="estaz" placeholder="infección/desorientación/violencia/desmayo/transformación">
+                    <br/>
+                    <br/>
+                    <input type="submit" id="enviar" name="enviar" value="Enviar">
+                </form>
+                
+            </div> 
+        </div> 
+        <br><br><br><br><br><br>
+
+</main>
+<%- include('includes/footer.ejs') %> 

@@ -1,0 +1,39 @@
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Laboratorio 7</title>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1" style="background-color: #05052e"><br></div>
+            <div class="col-11" style="background-color:black;">
+                <br>
+                <h2 style="color: white;">PETZ</h2>
+                <h3 style="color: rgba(67, 67, 224, 0.5);">People for the Ethical Treatment of Zombies</h3>
+                <br><br>
+            </div>
+            <div class="col-1" style="background-color: #04043d"><br></div>
+            
+                <% if ( isLoggedIn ) { %>
+                    <div class="col-5" style="background-color: #111114;">
+                        <p><h4 style="color: rgb(161, 161, 231);"><a href="/login/logout" style="color: rgb(161, 161, 231);">Cerrar Sesión</a></h4></p>
+                    </div>
+                    <div class="col-5" style="background-color: #111114;">
+                        <p><h4 style="color: rgb(161, 161, 231); text-align: right;"> Hola <%= username %></h4></p>
+                    </div>
+                    <div class="col-1" style="background-color: #111114;"><br></div>
+                <% } else { %>
+                    <div class="col-11" style="background-color: #111114;">
+                        <h4><a href="/login" style="color: rgb(161, 161, 231);"><br></a></h4>
+                    </div>
+                <% } %>
+        </div>
+    </div>
+        
+  </head>

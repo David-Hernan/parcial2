@@ -1,0 +1,33 @@
+<%- include('includes/head.ejs') %>
+
+<main class="container">
+        <div class="row">
+            <a href="/">Volver al menú</a>
+            <a href="/muestras/list">Lista de muestras</a>
+            <h1><%= titulo %></h1>
+
+            <div class="col s12 m6 l4">
+                
+                <form action="/muestras/add" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                    <label for="nombre">Nombre de la muestra: </label>
+                    <input type="text" id="nombre" name="nombre" placeholder="etilenglicol" required>
+                    <br/>
+                    <br/>
+                    <label for="funcion">Descripción de la muestra: </label>
+                    <input type="text" id="funcion" name="funcion" placeholder="Esta muestra es un antidepresivo...">
+                    <br/>
+                    <br/>
+                    <label for="indice_bodega">Número de bodega: </label>
+                    <input type="text" id="indice_bodega" name="indice_bodega" placeholder="3...">
+                    <br/>
+                    <br/>
+                    <input type="submit" id="enviar" name="enviar" value="Enviar">
+                </form>
+                
+            </div> 
+        </div> 
+        <br><br><br><br><br><br>
+
+</main>
+<%- include('includes/footer.ejs') %> 
