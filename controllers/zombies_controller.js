@@ -1,8 +1,19 @@
 //Meter el modelo de platillos que contiene el arreglo
+const { e2, e3, e4 } = require('../models/zombie');
 const Zombie = require('../models/zombie');
 const db = require('../util/database');
 //cuenta_estados(query)
 exports.getList = (request, response, next) => {
+    Zombie.e1()
+        .then(([ee1, fieldData]) => {
+    Zombie.e2()
+        .then(([ee2, fieldData]) => {
+    Zombie.e3()
+        .then(([ee3, fieldData]) => {
+    Zombie.e4()
+        .then(([ee4, fieldData]) => {
+    Zombie.e5()
+        .then(([ee5, fieldData]) => {
     Zombie.cuenta_zombies()
             .then(([cuenta, fieldData]) => {
                 Zombie.nombres_estados()
@@ -11,6 +22,11 @@ exports.getList = (request, response, next) => {
                     response.render('lista_zombies', { 
                         titulo: "Lista de zombies",
                         cantidad: cuenta[0],
+                        e1:ee1[0],
+                        e2:ee2[0],
+                        e3:ee3[0],
+                        e4:ee4[0],
+                        e5:ee5[0],
                         isLoggedIn: request.session.isLoggedIn,
                         username: request.session.username,
                         lista_muestras: rows,
@@ -21,6 +37,11 @@ exports.getList = (request, response, next) => {
                     response.status(302).redirect('/error');
                 });
             })
+        })
+    })
+    })
+    })
+    })
 };
 
 exports.getAdd = (request, response, next) => {

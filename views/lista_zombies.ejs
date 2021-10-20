@@ -12,7 +12,13 @@
                 <a href="/">Volver al menú</a>
                 <br>
                 <h1><%= titulo %></h1>
-                <p>Actualmente, hay <%= cantidad.total %> zombies registrados en el sistema</p>
+                <p>Actualmente, hay <%= cantidad.total %> zombies registrados en el sistema, de los cuales:</p>
+                <li><%= e1.g1 %> tienen infección </li>
+                <li><%= e2.g2 %> tienen desorientación</li>
+                <li><%= e3.g3 %> tienen violencia</li>
+                <li><%= e4.g4 %> tienen desmayo</li>
+                <li><%= e5.g5 %> tienen transformación</li>
+                <br>
                 <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" >
                 <input id="buscar" class="form-control" type="text" placeholder="Estado de zombificación que desea buscar" aria-label="default input example">
                 <br>
