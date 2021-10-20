@@ -51,14 +51,11 @@ app.use(csrfProtection);
 //incluye variable csrfToken en todas las respuestas
 app.use((request, response, next) => {
     response.locals.csrfToken = request.csrfToken();
-    next();
+    next(); 
 });
 
 //Ruta de login
 app.use('/login', rutasUsers)
-
-//Ruta de página muestra (Lab15)
-/*app.use('/muestras', muestras)*/
 
 app.use('/zombies', zombies)
 

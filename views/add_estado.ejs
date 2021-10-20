@@ -15,7 +15,14 @@
                     <br/>
                     <br/>
                     <label for="estaz">Nuevo Estado: </label>
-                    <input type="text" id="estaz" name="estaz" placeholder="infección/desorientación/violencia/desmayo/transformación">
+                    <input list="datalistOptions" type="text" id="estaz" name="estaz" placeholder="seleccionar">
+                    <datalist id="datalistOptions">
+                        <option value="infección">
+                        <option value="desorientación">
+                        <option value="violencia">
+                        <option value="desmayo">
+                        <option value="transformación">
+                    </datalist>
                     <br/>
                     <br/>
                     <input type="submit" id="enviar" name="enviar" value="Enviar">

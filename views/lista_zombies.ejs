@@ -12,6 +12,7 @@
                 <a href="/">Volver al menú</a>
                 <br>
                 <h1><%= titulo %></h1>
+                <p>Actualmente, hay <%= cantidad.total %> zombies registrados en el sistema</p>
                 <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" >
                 <input id="buscar" class="form-control" type="text" placeholder="Estado de zombificación que desea buscar" aria-label="default input example">
                 <br>
@@ -47,7 +48,6 @@
         document.getElementById("buscar").value;
         //Token de protección CSRF
         const csrf = document.getElementById('_csrf').value;
-        //console.log(csrf); //ver si tengo el csrf
 
         //función que manda la petición asíncrona
         fetch('/zombies/search', {

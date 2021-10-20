@@ -39,12 +39,29 @@ module.exports = class Zombie {
     }
 
     static cuenta_zombies(){
-        return db.execute("SELECT COUNT(nombre) 'Total de zombies' FROM zombie");
+        return db.execute("SELECT COUNT(nombre) 'total' FROM zombie");
     }
 
     static cuenta_estados(query){
-        return db.execute('SELECT COUNT(fecha) FROM zombie, estado, sube WHERE zombie.id_zombie = sube.id_zombie AND sube.id_status = estado.id_status AND statusz LIKE ?',
+        return db.execute('SELECT COUNT(fecha)"group_total" FROM zombie, estado, sube WHERE zombie.id_zombie = sube.id_zombie AND sube.id_status = estado.id_status AND statusz LIKE ?',
         ['%'+query+'%']);
+    }
+
+    //----------------------
+    static e1(){
+        return db.execute("SELECT COUNT(fecha)'g1' FROM zombie, estado, sube WHERE zombie.id_zombie = sube.id_zombie AND sube.id_status = estado.id_status AND statusz = 'infección'");
+    }
+    static e2(){
+        return db.execute("SELECT COUNT(fecha)'g2' FROM zombie, estado, sube WHERE zombie.id_zombie = sube.id_zombie AND sube.id_status = estado.id_status AND statusz = 'desorientación'");
+    }
+    static e3(){
+        return db.execute("SELECT COUNT(fecha)'g3' FROM zombie, estado, sube WHERE zombie.id_zombie = sube.id_zombie AND sube.id_status = estado.id_status AND statusz = 'violencia'");
+    }
+    static e4(){
+        return db.execute("SELECT COUNT(fecha)'g4' FROM zombie, estado, sube WHERE zombie.id_zombie = sube.id_zombie AND sube.id_status = estado.id_status AND statusz = 'desmayo'");
+    }
+    static e5(){
+        return db.execute("SELECT COUNT(fecha)'g5' FROM zombie, estado, sube WHERE zombie.id_zombie = sube.id_zombie AND sube.id_status = estado.id_status AND statusz = 'transformación'");
     }
     
 }
